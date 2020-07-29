@@ -1,0 +1,31 @@
+package Code;
+
+import javaCup.runtime.Symbol;
+
+parser code
+{:
+	private Symbol s;
+	
+	public void syntax_error(Symbol s){
+		this.s = s;
+	}
+	
+	public Symbol getS(){
+		return this.s;
+	}
+:};
+
+terminal If, AbrePar, CierraPar, Igual, Diferente, Mayor, MayorIgual, Menor, MenorIgual, Error;
+terminal Integer Numero;
+non terminal INICIO, SENTENCIA;
+
+start with INICIO;
+
+INICIO ::= If AbrePar SENTENCIA:sen CierraPar {: RESULT = sen; :};
+
+SENTENCIA ::= Numero:n1 Mayor Numero:n2 {: RESULT = n1.intValue() > n2.intValue(); :}
+				| Numero:n1 MayorIgual Numero:n2 {: RESULT = n1.intValue() >= n2.intValue(); :}
+				| Numero:n1 Menor Numero:n2 {: RESULT = n1.intValue() < n2.intValue(); :}
+				| Numero:n1 MenorIgual Numero:n2 {: RESULT = n1.intValue() <= n2.intValue(); :}
+				| Numero:n1 Igual Numero:n2 {: RESULT = n1.intValue() == n2.intValue(); :}
+				| Numero:n1 Diferente Numero:n2 {: RESULT = n1.intValue() != n2.intValue(); :};

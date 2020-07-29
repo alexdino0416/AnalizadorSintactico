@@ -1,0 +1,15 @@
+package Code;
+
+public enum Tokens {
+	If,
+	Else,
+	Igual,
+	Diferente,
+	Mayor,
+	MayorIgual,
+	Menor,
+	MenorIgual,
+	Numero,
+	AbrePar,
+	CierraPar
+}
